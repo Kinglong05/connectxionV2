@@ -30,6 +30,11 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
+// Root Route (Welcome Message)
+app.get('/', (req, res) => {
+  res.status(200).send('<h1>ConnectXion Signaling Server is LIVE 🚀</h1>');
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json());
