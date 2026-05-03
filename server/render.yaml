@@ -5,12 +5,7 @@ services:
     buildCommand: npm install
     startCommand: node index.js
     envVars:
-      - key: PORT
-        value: 3000
       - key: NODE_ENV
         value: production
-      - fromGroup: connectxion-db-secrets
-    # Connect to the client app (CORS)
-    envVars:
       - key: ALLOWED_ORIGINS
-        value: "*" # Change this to your production PHP domain later
+        value: "*"

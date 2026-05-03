@@ -7,14 +7,28 @@ const webpush = require('web-push');
 require('dotenv').config();
 
 // VAPID Keys for Push Notifications
-webpush.setVapidDetails(
-  process.env.VAPID_EMAIL || 'mailto:admin@connectxion.com',
-  process.env.VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-);
+if (process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
+  try {
+    webpush.setVapidDetails(
+      process.env.VAPID_EMAIL || 'mailto:admin@connectxion.com',
+      process.env.VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY
+    );
+    console.log('✅ VAPID Details Set');
+  } catch (err) {
+    console.error('⚠️ VAPID Setup Error:', err.message);
+  }
+} else {
+  console.warn('⚠️ Push Notifications disabled: VAPID keys missing in Environment Variables.');
+}
 
 const app = express();
 const server = http.createServer(app);
+
+// Health Check for Render/Deployment
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 // Middleware
 app.use(cors());
@@ -217,7 +231,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
+const PORT = process.env.PORT || 10000; // Render uses 10000 by default
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server is LIVE on port ${PORT}`);
 });
