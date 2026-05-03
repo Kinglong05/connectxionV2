@@ -1,0 +1,186 @@
+/* --- ConnectXion v2.0 - Design System --- */
+:root {
+    --bg-primary: #0a0b1e;
+    --bg-secondary: #161b33;
+    --bg-tertiary: #1f2445;
+    --accent: #00f2ff;
+    --accent-secondary: #7000ff;
+    --text-primary: #ffffff;
+    --text-muted: #8b949e;
+    --danger: #ff3e3e;
+    --success: #00ff88;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Layout --- */
+.app-container {
+    display: grid;
+    grid-template-columns: 80px 350px 1fr;
+    height: 100vh;
+}
+
+/* --- Side Navigation --- */
+.side-nav {
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 30px;
+}
+
+.nav-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: var(--glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 24px;
+}
+
+.nav-item:hover, .nav-item.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* --- Sidebar (Chat List) --- */
+.sidebar {
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 25px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.search-bar {
+    background: var(--bg-tertiary);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-item {
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat-item:hover {
+    background: var(--glass);
+}
+
+.chat-item .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
+}
+
+/* --- Main Chat Area --- */
+.main-chat {
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at top right, #161b33, #0a0b1e);
+}
+
+.chat-header {
+    height: 80px;
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Messages --- */
+.message {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message.own { align-self: flex-end; }
+.message.other { align-self: flex-start; }
+
+.bubble {
+    padding: 15px 20px;
+    border-radius: 20px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--glass-border);
+    position: relative;
+}
+
+.own .bubble {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-bottom-right-radius: 5px;
+}
+
+.other .bubble {
+    border-bottom-left-radius: 5px;
+}
+
+/* --- Input Area --- */
+.input-area {
+    height: 100px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-box {
+    flex: 1;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: white;
+    outline: none;
+}

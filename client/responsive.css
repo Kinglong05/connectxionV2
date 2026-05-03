@@ -1,0 +1,187 @@
+/* ============================================
+   CONNECTXION - Mobile Responsiveness System
+   ============================================ */
+
+/* Mobile Variables */
+:root {
+    --header-height: 70px;
+    --sidebar-width-mobile: 280px;
+}
+
+/* Global Mobile Fixes */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column !important;
+        display: block !important;
+        overflow: auto !important;
+        min-height: 100vh !important;
+    }
+
+    /* Sidebars Mobile Overlay */
+    .nav-sidebar, .sidebar, .chats-sidebar, .chats-sidebar-gaming {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        height: 100vh !important;
+        width: var(--sidebar-width-mobile) !important;
+        z-index: 2500 !important;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+        display: flex !important;
+    }
+
+    .nav-sidebar.active, .sidebar.active, .chats-sidebar.active, .chats-sidebar-gaming.active,
+    .is-hub .chats-sidebar, .is-hub .nav-sidebar {
+        transform: translateX(0);
+    }
+
+    /* Special case for nav-sidebar which is usually narrow */
+    .nav-sidebar {
+        width: 70px !important;
+        border-right: 1px solid var(--border);
+    }
+    
+    .chats-sidebar, .chats-sidebar-gaming, .sidebar {
+        left: 70px;
+        width: calc(var(--sidebar-width-mobile) - 70px) !important;
+    }
+
+    /* Main Container Mobile */
+    .chat-container, .main-content, .main-chat, .messages-area {
+        width: 100% !important;
+        height: calc(100vh - 60px) !important;
+        margin-left: 0 !important;
+        flex: 1 !important;
+    }
+
+    /* Headers Mobile */
+    .chat-header, .chats-header, .profile-header, .settings-header {
+        padding: 10px 15px !important;
+        height: auto !important;
+        min-height: 60px;
+    }
+
+    .chat-header-left, .header-info {
+        gap: 8px !important;
+    }
+
+    .chat-user-name, .room-name {
+        font-size: 16px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+    /* Hamburger Menu Button Styling */
+    .mobile-menu-toggle {
+        display: flex !important;
+        width: 40px;
+        height: 40px;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 24px;
+        cursor: pointer;
+        margin-right: 10px;
+        flex-shrink: 0;
+        box-shadow: var(--glow-effect);
+    }
+
+    /* Messages Mobile */
+    .messages-container, .messages-area {
+        padding: 15px !important;
+    }
+
+    .message, .message-wrapper {
+        max-width: 95% !important;
+    }
+
+    .message-bubble, .bubble {
+        font-size: 14px !important;
+        padding: 10px 12px !important;
+        border-radius: 15px !important;
+    }
+
+    /* Chat Input Mobile */
+    .chat-input-area, .input-area, .chat-footer {
+        padding: 10px !important;
+        height: auto !important;
+    }
+
+    .chat-input-area form, .input-area form {
+        gap: 8px !important;
+    }
+
+    input[type="text"].message-input, 
+    input[type="text"]#messageInput,
+    input[type="text"].input-box {
+        font-size: 16px !important; /* Fixes iOS zoom on focus */
+        padding: 10px 15px !important;
+    }
+
+    .action-btn, .nav-item-btn {
+        width: 38px !important;
+        height: 38px !important;
+    }
+
+    /* Auth Pages Mobile (Login/Register) */
+    .auth-container {
+        width: 95% !important;
+        max-width: 100% !important;
+    }
+
+    .panel-grid {
+        flex-direction: column !important;
+    }
+
+    .visual-side {
+        display: none !important; /* Hide visual side on mobile to save space */
+    }
+
+    .form-side {
+        padding: 25px 20px !important;
+    }
+
+    /* Profile/Settings Stacking */
+    .profile-grid, .settings-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Specific Page Fixes: Home/Hub */
+@media (max-width: 480px) {
+    .chat-user-name {
+        font-size: 16px !important;
+    }
+
+    .chat-actions .action-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Overlay for clicking outside sidebar */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}

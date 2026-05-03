@@ -1,0 +1,36 @@
+{
+  "name": "ConnectXion Gaming Hub",
+  "short_name": "ConnectXion",
+  "description": "Premium real-time gaming messenger and community hub.",
+  "start_url": "home.php",
+  "display": "standalone",
+  "background_color": "#0a0c0f",
+  "theme_color": "#ff4655",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Squad Chats",
+      "url": "home.php",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Friends",
+      "url": "friends.php",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

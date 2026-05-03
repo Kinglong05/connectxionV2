@@ -1,0 +1,35 @@
+services:
+  # 1. PHP Backend & Frontend
+  - type: web
+    name: connectxion-app
+    env: php
+    buildCommand: "" # No build needed for PHP
+    startCommand: php -S 0.0.0.0:$PORT
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: connectxion-db
+          property: host
+      - key: DB_NAME
+        value: connectxion
+      - key: DB_USER
+        fromDatabase:
+          name: connectxion-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: connectxion-db
+          property: password
+
+  # 2. Node.js Socket Server
+  - type: web
+    name: connectxion-socket
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DB_HOST
+        sync: false # Set manually after PlanetScale setup
+      - key: ALLOWED_ORIGINS
+        value: "*" # Update with your app URL after first deploy

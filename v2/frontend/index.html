@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectXion v2.0 | Real-Time Messenger</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="js/responsive.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 1. Side Navigation -->
+        <nav class="side-nav">
+            <div class="nav-item active" title="Chats">💬</div>
+            <div class="nav-item" title="Groups">👪</div>
+            <div class="nav-item" title="Friends">👥</div>
+            <div class="nav-item" title="Settings">⚙️</div>
+            <div style="flex: 1;"></div>
+            <div class="nav-item" title="Logout" onclick="handleLogout()">⏻</div>
+        </nav>
+
+        <!-- 2. Chat Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>CHATS</h2>
+                <input type="text" class="search-bar" placeholder="Search conversations...">
+            </div>
+            <div class="chat-list" id="chat-list">
+                <!-- Chat items will be injected here via JS -->
+                <div class="chat-item" onclick="app.joinRoom('general')">
+                    <div class="avatar"></div>
+                    <div class="chat-info">
+                        <strong>General Chat</strong>
+                        <p>Welcome to ConnectXion!</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 3. Main Chat Window -->
+        <main class="main-chat">
+            <header class="chat-header">
+                <div class="header-info">
+                    <h3 id="current-chat-name">Select a Conversation</h3>
+                    <span id="typing-indicator" style="font-size: 12px; color: var(--accent);"></span>
+                </div>
+                <div class="header-actions">
+                    <button class="nav-item" style="width: 40px; height: 40px; font-size: 18px;">ℹ️</button>
+                </div>
+            </header>
+
+            <div class="messages-container" id="messages-container">
+                <!-- Messages will appear here -->
+                <div class="empty-state" style="text-align: center; margin-top: 100px; opacity: 0.5;">
+                    <p>Click a group or friend to start chatting</p>
+                </div>
+            </div>
+
+            <footer class="input-area">
+                <button class="nav-item" style="width: 45px; height: 45px;">📎</button>
+                <form id="chat-form" style="flex: 1; display: flex; gap: 15px;">
+                    <input type="text" id="message-input" class="input-box" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit" class="nav-item" style="width: 45px; height: 45px; background: var(--accent); color: black;">➤</button>
+                </form>
+                <button class="nav-item" style="width: 45px; height: 45px;" id="voice-btn">🎤</button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize the app with config
+        // In production, these would be injected by PHP or loaded from a config API
+        const app = new ConnectXion({
+            nodeUrl: 'http://localhost:3000',
+            apiUrl: 'backend/api/index.php',
+            user: {
+                id: 1, // To be replaced with real session data
+                username: 'User'
+            }
+        });
+    </script>
+</body>
+</html>
