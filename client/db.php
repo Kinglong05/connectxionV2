@@ -13,10 +13,10 @@ require_once 'logger.php';
 define('SOCKET_URL', 'https://connectxion-v2-server.onrender.com');
 
 // Database Configuration (Clever Cloud Global DB)
-$host = 'b7mjpposodbe8dn9py31-mysql.services.clever-cloud.com';
-$username = 'uujmrxblua3aqwv7';
+$host = 'b7mjyceoodbe5dn9yy31-mysql.services.clever-cloud.com';
+$username = 'uujsxrklus3xgvv7';
 $password = 'hPtN2RxSOHG0fjlg3Ze4';
-$database = 'b7mjpposodbe8dn9py31';
+$database = 'b7mjyceoodbe5dn9yy31';
 $port = 3306;
 
 
