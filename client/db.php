@@ -9,12 +9,15 @@ define('DB_PHP', true);
 require_once 'logger.php';
 
 
-// Database Configuration (Prioritize environment variables for production)
-$host = getenv('DB_HOST') ?: 'localhost';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASSWORD') ?: '';
-$database = getenv('DB_NAME') ?: 'connectxion';
-$port = getenv('DB_PORT') ?: 3306;
+// Link to your Live Render Signaling Server
+define('SOCKET_URL', 'https://connectxion-v2-server.onrender.com');
+
+// Database Configuration (Clever Cloud Global DB)
+$host = 'b7mjpposodbe8dn9py31-mysql.services.clever-cloud.com';
+$username = 'uujmrxblua3aqwv7';
+$password = 'hPtN2RxSOHG0fjlg3Ze4';
+$database = 'b7mjpposodbe8dn9py31';
+$port = 3306;
 
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
