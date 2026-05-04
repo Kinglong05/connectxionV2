@@ -73,6 +73,17 @@ const io = new Server(server, {
 const rawHost = process.env.DB_HOST || 'localhost';
 const cleanHost = rawHost.trim().replace(/^https?:\/\//, ''); // Remove spaces and http://
 
+// DNS Debug Test
+const dns = require('dns');
+console.log(`🔍 Debug: Looking up DNS for [${cleanHost}]...`);
+dns.lookup(cleanHost, (err, address, family) => {
+  if (err) {
+    console.error(`❌ DNS Lookup Failed for [${cleanHost}]:`, err.message);
+  } else {
+    console.log(`✅ DNS Lookup Success: [${cleanHost}] resolved to [${address}] (IPv${family})`);
+  }
+});
+
 const dbConfig = {
   host: cleanHost,
   user: (process.env.DB_USER || 'root').trim(),
